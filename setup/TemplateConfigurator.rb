@@ -140,7 +140,7 @@ module Pod
 
     def rename_template_files
       Dir[File.join('**', '*')].each do |path|
-        FileUtils.mv path, path.gsub('__PROJECT__', pod_name)
+        FileUtils.mv path, path.gsub('__PROJECT__', pod_name) if path.include?('__PROJECT__')
       end
     end
 
