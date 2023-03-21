@@ -27,10 +27,12 @@ module Pod
       }
       replace_internal_project_settings
 
-      @project = Xcodeproj::Project.open(@xcodeproj_path)
-      add_podspec_metadata
-      remove_demo_project if @remove_demo_target
-      @project.save
+      if @xcodeproj_path && File.exist?(@xcodeproj_path)
+        @project = Xcodeproj::Project.open(@xcodeproj_path)
+        add_podspec_metadata
+        remove_demo_project if @remove_demo_target
+        @project.save
+      end
 
       rename_files
       rename_project_folder

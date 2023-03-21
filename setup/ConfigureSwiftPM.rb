@@ -25,16 +25,10 @@ module Pod
 
       Pod::ProjectManipulator.new({
         :configurator => @configurator,
-        :xcodeproj_path => "templates/swift-pm/Example/PROJECT.xcodeproj",
         :platform => :ios,
         :remove_demo_project => true,
         :prefix => ""
       }).run
-
-      # There has to be a single file in the Classes dir
-      # or a framework won't be created
-      puts `pwd`
-      `touch Sources/#{@configurator.pod_name}/#{@configurator.pod_name}.swift`
 
       `mv ./templates/swift-pm/* ./`
     end
