@@ -187,7 +187,7 @@ module Pod
     end
 
     def podfile_path
-      'Example/Podfile'
+      'Podfile'
     end
 
     #----------------------------------------#
