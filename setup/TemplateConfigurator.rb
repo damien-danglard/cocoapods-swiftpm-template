@@ -86,6 +86,8 @@ module Pod
           end
       end
 
+      puts "OK"
+      return
       replace_variables_in_files
       clean_template_files
       rename_template_files
