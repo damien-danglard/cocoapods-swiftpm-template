@@ -145,6 +145,8 @@ module Pod
       FileUtils.mv "POD_README.md", "README.md"
       FileUtils.mv "POD_LICENSE", "LICENSE"
       FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
+      FileUtils.mv File.join('Sources', 'PROJECT'), File.join('Sources', pod_name)
+      FileUtils.mv File.join('Tests', 'PROJECTTests'), File.join('Sources', "#{pod_name}Tests")
     end
 
     def create_file_architecture

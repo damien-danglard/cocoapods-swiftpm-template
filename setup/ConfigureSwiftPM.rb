@@ -23,13 +23,6 @@ module Pod
           configurator.set_test_framework "xctest", "swift", "swift"
       end
 
-      Pod::ProjectManipulator.new({
-        :configurator => @configurator,
-        :platform => :ios,
-        :remove_demo_project => true,
-        :prefix => ""
-      }).run
-
       `mv ./templates/swift-pm/* ./`
     end
   end
