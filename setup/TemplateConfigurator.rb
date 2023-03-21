@@ -141,12 +141,10 @@ module Pod
     def rename_template_files
       Dir[File.join('**', '*')]
           .select { |path| path.include? '__PROJECT__'}
-          .select { |path| File.file? path }
           .each do |path|
         new_path = path.gsub('__PROJECT__', pod_name)
         new_dir = File.dirname(new_path)
-        FileUtils.mkdir_p new_dir unless File.exist?(new_dir)
-        FileUtils.mv path, new_path
+        FileUtils.mv File.join(new_dir, File.basename(path)), new_path
       end
     end
 
