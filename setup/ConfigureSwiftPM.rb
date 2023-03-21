@@ -23,7 +23,9 @@ module Pod
           configurator.set_test_framework "xctest", "swift", "swift"
       end
 
-      FileUtils.mv File.join('templates', 'swift-pm', '*'), '.'
+      Dir[File.join('templates', 'swift-pm', '*')].each do |path|
+        FileUtils.mv path, File.join('.', File.basename(path))
+      end
     end
   end
 
