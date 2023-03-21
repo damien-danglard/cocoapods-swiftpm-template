@@ -139,8 +139,12 @@ module Pod
     end
 
     def rename_template_files
-      Dir[File.join('**', '*')].each do |path|
-        FileUtils.mv path, path.gsub('__PROJECT__', pod_name) if path.include?('__PROJECT__')
+      Dir[File.join('**', '*')]
+          .select { |path| path.include? '__PROJECT__'}
+          .each do |path|
+        new_path = path.gsub('__PROJECT__', pod_name)
+        FileUtils.mkdir_p File.basename(new_path) unless File.exist?(File.basename(new_path))
+        FileUtils.mv path, new_path
       end
     end
 
