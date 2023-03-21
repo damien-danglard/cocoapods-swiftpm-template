@@ -23,7 +23,7 @@ module Pod
           configurator.set_test_framework "xctest", "swift", "swift"
       end
 
-      `mv ./templates/swift-pm/* ./`
+      FileUtils.mv File.join('templates', 'swift-pm', '*'), '.'
     end
   end
 

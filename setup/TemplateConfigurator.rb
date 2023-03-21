@@ -100,7 +100,7 @@ module Pod
     end
 
     def replace_variables_in_files
-      file_names = ['POD_LICENSE', 'POD_README.md', 'NAME.podspec', '.travis.yml', 'Package.swift', podfile_path]
+      file_names = ['LICENSE', 'README.md', "#{@pod_name}.podspec", '.travis.yml', 'Package.swift', podfile_path]
       file_names.each do |file_name|
         text = File.read(file_name)
         text.gsub!("${POD_NAME}", @pod_name)
@@ -139,11 +139,9 @@ module Pod
     end
 
     def rename_template_files
-      FileUtils.mv "POD_README.md", "README.md"
-      FileUtils.mv "POD_LICENSE", "LICENSE"
-      FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
-      FileUtils.mv File.join('Sources', 'PROJECT'), File.join('Sources', pod_name)
-      FileUtils.mv File.join('Tests', 'PROJECTTests'), File.join('Sources', "#{pod_name}Tests")
+      Dir[File.join('**', '*')].each do |path|
+        FileUtils.mv path, path.gsub('__PROJECT__', pod_name)
+      end
     end
 
     def deinitialize_git_repo

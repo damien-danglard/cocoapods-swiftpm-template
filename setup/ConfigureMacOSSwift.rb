@@ -39,7 +39,7 @@ module Pod
       # or a framework won't be created
       `touch Pod/Classes/ReplaceMe.swift`
 
-      `mv ./NAME-osx.podspec ./NAME.podspec`
+      `mv ./NAME-osx.podspec ./__PROJECT__.podspec`
     end
   end
 
