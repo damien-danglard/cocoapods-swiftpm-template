@@ -76,7 +76,6 @@ module Pod
       clean_template_files
       rename_template_files
       add_pods_to_podfile
-      create_file_architecture
       deinitialize_git_repo
       run_pod_install
 
@@ -147,11 +146,6 @@ module Pod
       FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
       FileUtils.mv File.join('Sources', 'PROJECT'), File.join('Sources', pod_name)
       FileUtils.mv File.join('Tests', 'PROJECTTests'), File.join('Sources', "#{pod_name}Tests")
-    end
-
-    def create_file_architecture
-      FileUtils.mkdir File.join("Sources", @pod_name)
-      FileUtils.mkdir File.join("Tests", "#{@pod_name}Tests")
     end
 
     def deinitialize_git_repo
