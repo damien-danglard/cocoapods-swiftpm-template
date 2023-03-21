@@ -143,8 +143,8 @@ module Pod
           .select { |path| path.include? '__PROJECT__'}
           .select { |path| File.file? path }
           .each do |path|
-        puts path
         new_path = path.gsub('__PROJECT__', pod_name)
+        puts File.basename(new_path)
         FileUtils.mkdir_p File.basename(new_path) unless File.exist?(File.basename(new_path))
         FileUtils.mv path, new_path
       end
