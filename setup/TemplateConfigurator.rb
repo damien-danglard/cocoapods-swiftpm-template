@@ -141,6 +141,7 @@ module Pod
     def rename_template_files
       Dir[File.join('**', '*')]
           .select { |path| path.include? '__PROJECT__'}
+          .select { |path| File.file? path }
           .each do |path|
         puts path
         new_path = path.gsub('__PROJECT__', pod_name)
