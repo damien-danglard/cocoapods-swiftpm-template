@@ -91,18 +91,13 @@ module Pod
       rename_template_files
       add_pods_to_podfile
       create_file_architecture
-      ensure_carthage_compatibility
-      reinitialize_git_repo
+      deinitialize_git_repo
       run_pod_install
 
       @message_bank.farewell_message
     end
 
     #----------------------------------------#
-
-    def ensure_carthage_compatibility
-      FileUtils.ln_s('Example/Pods/Pods.xcodeproj', '_Pods.xcodeproj')
-    end
 
     def run_pod_install
       puts "\nRunning " + "pod install".magenta + " on your new library."
@@ -172,10 +167,8 @@ module Pod
       FileUtils.mkdir File.join("Tests", "#{@pod_name}Tests")
     end
 
-    def reinitialize_git_repo
+    def deinitialize_git_repo
       `rm -rf .git`
-      `git init`
-      `git add -A`
     end
 
     def validate_user_details
