@@ -25,6 +25,6 @@ targets:
     type: framework
     platform: iOS
     sources:
-      - path: Sources/Logger
+      - path: Sources/${POD_NAME}
         name: ${POD_NAME}
         type: group
