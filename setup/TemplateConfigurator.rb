@@ -79,6 +79,7 @@ module Pod
       deinitialize_git_repo
       run_xcodegen
       run_pod_install
+      commit_new_framework
 
       @message_bank.farewell_message
     end
@@ -99,8 +100,11 @@ module Pod
       puts ""
 
       system "pod install"
+    end
 
-      `git commit -m "feat: add #{@pod_name} framework"` # TODO: Move this in separate method
+    def commit_new_framework
+      `git add .`
+      `git commit -m "feat: add #{@pod_name} framework"`
     end
 
     def clean_template_files
