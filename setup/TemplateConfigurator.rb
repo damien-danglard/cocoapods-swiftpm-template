@@ -77,6 +77,7 @@ module Pod
       rename_template_files
       add_pods_to_podfile
       deinitialize_git_repo
+      run_xcodegen
       run_pod_install
 
       @message_bank.farewell_message
@@ -84,13 +85,22 @@ module Pod
 
     #----------------------------------------#
 
+    def run_xcodegen
+      return unless File.exist? 'project.yml'
+
+      puts "\nRunning " + "xcodegen generate".magenta + " on your new library."
+      puts ""
+
+      system "xcodegen generate"
+    end
+
     def run_pod_install
       puts "\nRunning " + "pod install".magenta + " on your new library."
       puts ""
 
       system "pod install"
 
-      `git commit -m "feat: add #{@pod_name} framework"`
+      `git commit -m "feat: add #{@pod_name} framework"` # TODO: Move this in separate method
     end
 
     def clean_template_files
