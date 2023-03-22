@@ -112,15 +112,19 @@ module Pod
     def replace_variables_in_files
       file_names = ['LICENSE', 'README.md', '__PROJECT__.podspec', '.travis.yml', 'Package.swift', 'project.yml', podfile_path]
       file_names.each do |file_name|
-        text = File.read(file_name)
-        text.gsub!("${POD_NAME}", @pod_name)
-        text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
-        text.gsub!("${USER_NAME}", user_name)
-        text.gsub!("${USER_EMAIL}", user_email)
-        text.gsub!("${YEAR}", year)
-        text.gsub!("${DATE}", date)
-        File.open(file_name, "w") { |file| file.puts text }
+        replace_variables_in_file file_name
       end
+    end
+
+    def replace_variables_in_file(path)
+      text = File.read(path)
+      text.gsub!("${POD_NAME}", @pod_name)
+      text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
+      text.gsub!("${USER_NAME}", user_name)
+      text.gsub!("${USER_EMAIL}", user_email)
+      text.gsub!("${YEAR}", year)
+      text.gsub!("${DATE}", date)
+      File.open(path, "w") { |file| file.puts text }
     end
 
     def add_pod_to_podfile podname
