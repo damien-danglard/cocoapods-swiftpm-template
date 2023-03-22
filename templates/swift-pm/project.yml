@@ -21,7 +21,7 @@ targets:
           - "*file"
           - "*.podspec"
         buildPhase: none
-  Logger:
+  ${POD_NAME}:
     type: framework
     platform: iOS
     sources:
