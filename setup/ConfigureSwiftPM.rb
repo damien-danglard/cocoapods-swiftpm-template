@@ -26,6 +26,8 @@ module Pod
       Dir[File.join('templates', 'swift-pm', '*')].each do |path|
         FileUtils.mv path, File.join('.', File.basename(path))
       end
+
+      `xcodegen generate`
     end
   end
 

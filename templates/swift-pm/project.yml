@@ -1,0 +1,30 @@
+name: ${POD_NAME}
+options:
+  usesTabs: true
+  xcodeVersion: 12.4
+  deploymentTarget:
+    iOS: 13.0
+  generateEmptyDirectories: true
+targets:
+  Metadata:
+    type: bundle
+    platform: iOS
+    sources:
+      - path: .
+        name: Metadata
+        includes:
+          - .gitignore
+          - ".*.yml"
+          - "*.yml"
+          - .jazzy.json
+          - "*.md"
+          - "*file"
+          - "*.podspec"
+        buildPhase: none
+  Logger:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Sources/Logger
+        name: ${POD_NAME}
+        type: group
