@@ -156,6 +156,8 @@ module Pod
       Dir[File.join('**', '*')]
           .select { |path| path.include? '__PROJECT__'}
           .each do |path|
+        replace_variables_in_file path if File.file? path
+
         new_path = path.gsub('__PROJECT__', pod_name)
         new_dir = File.dirname(new_path)
         FileUtils.mv File.join(new_dir, File.basename(path)), new_path
