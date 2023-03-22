@@ -24,6 +24,7 @@ module Pod
       end
 
       Dir[File.join('templates', 'swift-pm', '*')].each do |path|
+        puts path
         @configurator.replace_variables_in_file path if File.file? path
 
         FileUtils.mv path, File.join('.', File.basename(path))
